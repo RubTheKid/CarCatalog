@@ -1,8 +1,13 @@
-const carService = require('../application/services/CarService');
+const CarService = require('../application/services/CarService');
+const carSchema = require('../validators/carValidator');
+const MongoCarRepository = require('../infrastructure/repositories/MongoCarRepository')
+
+const carRepository = new MongoCarRepository();
+const carService = new CarService(carRepository);
 
 const getAllCars = async (req, res) => {
   try {
-    const cars = await carService.getAllCars();
+    const cars = await carService.getAllCars(); 
     res.json(cars);
   } catch (error) {
     console.error('Error fetching cars:', error.message);
@@ -24,11 +29,15 @@ const getCarById = async (req, res) => {
 };
 
 const createCar = async (req, res) => {
+  const { error } = carSchema.validate(req.body);
+  if (error) return res.status(400).send(error.details[0].message);
   try {
     const car = await carService.createCar(req.body);
     res.status(201).json(car);
+    logger.info('Car created successfully');
   } catch (error) {
     console.error('Error creating car:', error.message);
+    logger.error('Error creating car: ', error);
     res.status(400).json({ message: 'Error creating car', error: error.message });
   }
 };

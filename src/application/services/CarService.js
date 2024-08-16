@@ -1,19 +1,19 @@
-const CarRepository = require('../../infrastructure/repositories/CarRepository')
-const MongoCarRepository = require('../../infrastructure/repositories/MongoCarRepository')
-
 class CarService {
-  
   constructor(carRepository) {
     this.carRepository = carRepository;
   }
 
   async getAllCars() {
     try {
-      return await this.carRepository.getAllCars();
+      console.log('Calling getAllCars on carRepository');
+      const result = await this.carRepository.getAllCars();
+      console.log('Result from getAllCars:', result);
+      return result;
     } catch (error) {
       throw new Error('Error fetching all cars: ' + error.message);
     }
   }
+
 
   async getCarById(id) {
     try {
@@ -84,6 +84,4 @@ class CarService {
   }
 }
 
-const carService = new CarService(new MongoCarRepository());
-
-module.exports = carService;
+module.exports = CarService;

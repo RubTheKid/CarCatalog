@@ -1,4 +1,4 @@
-const CarRepository = require('../../infrastructure/repositories/CarRepository')
+const CarRepository = require('./CarRepository')
 const CarModel = require('../database/car.model');
 
 class MongoCarRepository extends CarRepository {
