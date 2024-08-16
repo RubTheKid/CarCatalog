@@ -16,11 +16,10 @@ const seedDB = async () => {
       useUnifiedTopology: true,
     });
     console.log('MongoDB connected');
-
+    
     await Car.deleteMany({});
     console.log('Cleared existing cars');
 
-    // Inserir novos dados
     await Car.insertMany(cars);
     console.log('Added cars to the database');
   } catch (error) {

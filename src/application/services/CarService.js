@@ -59,15 +59,23 @@ class CarService {
 
   async getCarsByBrand(brand) {
     try {
-      return await this.carRepository.getCarsByBrand(brand);
+        if (!brand) {
+            throw new Error("Brand parameter is required");
+        }
+        const normalizedBrand = brand.trim().toUpperCase(); 
+        return await this.carRepository.getCarsByBrand(normalizedBrand);
     } catch (error) {
-      throw new Error('Error fetching cars by brand: ' + error.message);
+        throw new Error('Error fetching cars by brand: ' + error.message);
     }
-  }
+}
 
   async getCarsByModel(model) {
     try {
-      return await this.carRepository.getCarsByModel(model);
+      if (!model) {
+        throw new Error("Model parameter is required");
+    }
+      const normalizedModel = model.trim().toUpperCase();
+      return await this.carRepository.getCarsByModel(normalizedModel);
     } catch (error) {
       throw new Error('Error fetching cars by model: ' + error.message);
     }

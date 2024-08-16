@@ -16,9 +16,9 @@ app.post('/cars', CarsController.createCar);
 app.put('/cars/:id', CarsController.updateCar);
 app.delete('/cars/:id', CarsController.deleteCar);
 
-app.get('/cars/brand', CarsController.getCarsByBrand);
-app.get('/cars/model', CarsController.getCarsByModel);
-app.get('/cars/year', CarsController.getCarsByYear);
+app.get('/cars/brand/:brand', CarsController.getCarsByBrand);
+app.get('/cars/model/:model', CarsController.getCarsByModel);
+app.get('/cars/year/:year', CarsController.getCarsByYear);
 
 app.use((err, req, res, next) => {
   console.error(err.stack);

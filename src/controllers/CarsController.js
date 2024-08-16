@@ -70,7 +70,8 @@ const deleteCar = async (req, res) => {
 
 const getCarsByBrand = async (req, res) => {
   try {
-    const cars = await carService.getCarsByBrand(req.query.brand);
+    const brand = req.params.brand; 
+    const cars = await carService.getCarsByBrand(brand);
     res.json(cars);
   } catch (error) {
     console.error('Error fetching cars by brand:', error.message);
@@ -80,7 +81,8 @@ const getCarsByBrand = async (req, res) => {
 
 const getCarsByModel = async (req, res) => {
   try {
-    const cars = await carService.getCarsByModel(req.query.model);
+    const model = req.params.model;
+    const cars = await carService.getCarsByModel(model);
     res.json(cars);
   } catch (error) {
     console.error('Error fetching cars by model:', error.message);
