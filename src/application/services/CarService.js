@@ -5,9 +5,7 @@ class CarService {
 
   async getAllCars() {
     try {
-      console.log('Calling getAllCars on carRepository');
       const result = await this.carRepository.getAllCars();
-      console.log('Result from getAllCars:', result);
       return result;
     } catch (error) {
       throw new Error('Error fetching all cars: ' + error.message);
