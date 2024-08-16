@@ -1,6 +1,6 @@
 const express = require('express');
 const connectDB = require('./config/database');
-const carController = require('./interfaces/controllers/car.controller');
+const carController = require('./controllers/car.controller');
 require('dotenv').config();
 
 const app = express();
