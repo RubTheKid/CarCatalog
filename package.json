@@ -6,7 +6,8 @@
     "test": "jest",
     "start": "node src/index.js",
     "dev": "nodemon src/index.js",
-    "seed": "node scripts/seed.js"
+    "seed": "node scripts/seed.js",
+    "adamoSeed": "node scripts/adamoSeed.js"
   },
   "keywords": [],
   "author": "",
