@@ -1,12 +1,13 @@
 const mongoose = require('mongoose');
-const Car = require('../src/domain/car/car.model');
+const Car = require('../src/infrastructure/database/car.model');
+const { v4: uuidv4 } = require('uuid');
 require('dotenv').config();
 
 const cars = [
-  { year: 2020, model: 'Model S', brand: 'Tesla', version: 'Long Range' },
-  { year: 2021, model: 'Mustang', brand: 'Ford', version: 'GT' },
-  { year: 2022, model: 'Civic', brand: 'Honda', version: 'Sport' },
-  { year: 2023, model: 'Corolla', brand: 'Toyota', version: 'SE' },
+  { id: uuidv4(), year: 2020, model: 'Model S', brand: 'Tesla', version: 'Long Range' },
+  { id: uuidv4(), year: 2021, model: 'Mustang', brand: 'Ford', version: 'GT' },
+  { id: uuidv4(), year: 2022, model: 'Civic', brand: 'Honda', version: 'Sport' },
+  { id: uuidv4(), year: 2023, model: 'Corolla', brand: 'Toyota', version: 'SE' },
 ];
 
 const seedDB = async () => {
@@ -17,7 +18,6 @@ const seedDB = async () => {
     });
     console.log('MongoDB connected');
 
-    // Limpar coleção existente
     await Car.deleteMany({});
     console.log('Cleared existing cars');
 
