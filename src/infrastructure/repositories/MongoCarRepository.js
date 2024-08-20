@@ -37,6 +37,54 @@ class MongoCarRepository extends CarRepository {
   async getCarsByYear(year) {
     return CarModel.find({ year });
   }
+
+  async getBrands() {
+    try {
+      return await CarModel.distinct('brand');
+    } catch (error) {
+      throw new Error('Error fetching brands: ' + error.message);
+    }
+  }
+
+  async getModelsByBrand(brand) {
+    try {
+      return await CarModel.distinct('model', { brand });
+    } catch (error) {
+      throw new Error('Error fetching models by brand: ' + error.message);
+    }
+  }
+
+  async getYearsByModel(model) {
+    try {
+      return await CarModel.distinct('year', { model });
+    } catch (error) {
+      throw new Error('Error fetching years by model: ' + error.message);
+    }
+  }
+
+  async getYears() {
+    try {
+      return await CarModel.distinct('year');
+    } catch (error) {
+      throw new Error('Error fetching years: ' + error.message);
+    }
+  }
+
+  async getBrandsByYear(year) {
+    try {
+      return await CarModel.distinct('brand', { year });
+    } catch (error) {
+      throw new Error('Error fetching brands by year: ' + error.message);
+    }
+  }
+
+  async getModelsByBrandAndYear(brand, year) {
+    try {
+      return await CarModel.distinct('model', { brand, year });
+    } catch (error) {
+      throw new Error('Error fetching models by brand and year: ' + error.message);
+    }
+  }
 }
 
 module.exports = MongoCarRepository;

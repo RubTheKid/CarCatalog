@@ -7,8 +7,8 @@ A API permite buscar informações sobre carros com base em marca, modelo, ano e
 
 Além disso, este projeto serve como uma extensão para meu TCC.
 
-[MINTSAPI](https://github.com/RubTheKid/MintsApi) [MINTS DASHBOARD](https://github.com/rubthekid/mints.dashboard)
-[MINTSWEB](https://github.com/rubthekid/mints.Web) [MINTSAPP](https://github.com/RubTheKid/mints.app)
+[MINTSAPI](https://github.com/RubTheKid/MintsApi) [MINTS DASHBOARD](https://github.com/RubTheKid/mints.dashboard)
+[MINTSWEB](https://github.com/RubTheKid/mints.Web) [MINTSAPP](https://github.com/RubTheKid/mints.app)
 (privados por enquanto)
 
 ## Funcionalidades
@@ -17,6 +17,12 @@ Além disso, este projeto serve como uma extensão para meu TCC.
 - **Consultar carros por modelo**: Permite buscar veículos baseados no modelo especificado.
 - **Consultar carros por ano**: Permite buscar veículos fabricados no ano informado.
 - **Consultar carros por versão**: Permite buscar veículos pela versão especificada.
+- **Consultar marcas disponíveis**: Retorna todas as marcas de veículos disponíveis.
+- **Consultar modelos por marca**: Retorna os modelos disponíveis de uma marca específica.
+- **Consultar anos de fabricação por modelo**: Retorna os anos de fabricação disponíveis para um modelo específico.
+- **Consultar versões de um modelo por ano**: Retorna as versões disponíveis de um modelo em um ano específico.
+- **Consultar marcas disponíveis por ano**: Retorna as marcas disponíveis para um ano específico.
+- **Consultar modelos por marca e ano**: Retorna os modelos de uma marca específica disponíveis em um ano específico.
 
 ## Tecnologias
 
@@ -31,7 +37,11 @@ Além disso, este projeto serve como uma extensão para meu TCC.
 - `GET /cars/brand/:brand` - Busca carros por marca.
 - `GET /cars/model/:model` - Busca carros por modelo.
 - `GET /cars/year/:year` - Busca carros por ano.
-- `GET /cars/version/:version` - Busca carros por versão.
+- `GET /brands` - Retorna todas as marcas de veículos disponíveis.
+- `GET /models/:brand` - Retorna os modelos disponíveis de uma marca específica.
+- `GET /years/:model` - Retorna os anos de fabricação disponíveis para um modelo específico.
+- `GET /brands/:year` - Retorna as marcas disponíveis para um ano específico.
+- `GET /models/:brand/:year` - Retorna os modelos de uma marca específica disponíveis em um ano específico.
 
 - 
 ## Instalação

@@ -92,12 +92,87 @@ const getCarsByModel = async (req, res) => {
 
 const getCarsByYear = async (req, res) => {
   try {
-    const cars = await carService.getCarsByYear(req.query.year);
+    const year = req.params.year;
+    const cars = await carService.getCarsByYear(year);
     res.json(cars);
   } catch (error) {
     console.error('Error fetching cars by year:', error.message);
     res.status(500).json({ message: 'Error fetching cars by year', error: error.message });
   }
-};
+}
 
-module.exports = { getAllCars, getCarById, createCar, updateCar, deleteCar, getCarsByBrand, getCarsByModel, getCarsByYear };
+  const getBrands = async (req, res) => {
+    try {
+      const brands = await carService.getAllBrands();
+      res.json(brands);
+    } catch (error) {
+      console.error('Error fetching brands:', error.message);
+      res.status(500).json({ message: 'Error fetching brands', error: error.message });
+    }
+  };
+
+  const getModelsByBrand = async (req, res) => {
+    try {
+      const brand = req.params.brand;
+      const models = await carService.getModelsByBrand(brand);
+      res.json(models);
+    } catch (error) {
+      console.error('Error fetching models by brand:', error.message);
+      res.status(500).json({ message: 'Error fetching models by brand', error: error.message });
+    }
+  };
+
+  const getYearsByModel = async (req, res) => {
+    try {
+      const model = req.params.model;
+      const years = await carService.getYearsByModel(model);
+      res.json(years);
+    } catch (error) {
+      console.error('Error fetching years by model:', error.message);
+      res.status(500).json({ message: 'Error fetching years by model', error: error.message });
+    }
+  };
+
+  const getYears = async (req, res) => {
+    try {
+      const years = await carService.getAllYears();
+      res.json(years);
+    } catch (error) {
+      console.error('Error fetching years:', error.message);
+      res.status(500).json({ message: 'Error fetching years', error: error.message });
+    }
+  };
+
+  const getBrandsByYear = async (req, res) => {
+    try {
+      const year = req.params.year;
+      const cars = await carService.getCarsByYear(year);
+      const brands = [...new Set(cars.map(car => car.brand))];
+      res.json(brands);
+    } catch (error) {
+      console.error('Error fetching brands by year:', error.message);
+      res.status(500).json({ message: 'Error fetching brands by year', error: error.message });
+    }
+  };
+
+  const getModelsByBrandAndYear = async (req, res) => {
+    try {
+      const year = parseInt(req.params.year, 10);
+      const brand = req.params.brand;
+      const cars = await carService.getCarsByBrand(brand);
+  
+      const filteredCars = cars.filter(car => car.year === year);
+      const models = [...new Set(filteredCars.map(car => car.model))];
+  
+      if (models.length === 0) {
+        return res.status(404).json({ message: 'No models found for the given brand and year' });
+      }
+  
+      res.json(models);
+    } catch (error) {
+      console.error('Error fetching models by brand and year:', error.message);
+      res.status(500).json({ message: 'Error fetching models by brand and year', error: error.message });
+    }
+  };
+
+module.exports = { getAllCars, getCarById, createCar, updateCar, deleteCar, getCarsByBrand, getCarsByModel, getCarsByYear, getBrands, getModelsByBrand, getYearsByModel, getYears, getBrandsByYear, getModelsByBrandAndYear};

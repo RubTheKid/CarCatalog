@@ -88,6 +88,46 @@ class CarService {
       throw new Error('Error fetching cars by year: ' + error.message);
     }
   }
+
+  async getAllBrands() {
+    try {
+      const cars = await this.carRepository.getAllCars();
+      const brands = [...new Set(cars.map(car => car.brand))];
+      return brands;
+    } catch (error) {
+      throw new Error('Error fetching brands: ' + error.message);
+    }
+  }
+
+  async getModelsByBrand(brand) {
+    try {
+      const cars = await this.getCarsByBrand(brand);
+      const models = [...new Set(cars.map(car => car.model))];
+      return models;
+    } catch (error) {
+      throw new Error('Error fetching models by brand: ' + error.message);
+    }
+  }
+
+  async getYearsByModel(model) {
+    try {
+      const cars = await this.getCarsByModel(model);
+      const years = [...new Set(cars.map(car => car.year))];
+      return years;
+    } catch (error) {
+      throw new Error('Error fetching years by model: ' + error.message);
+    }
+  }
+
+  async getAllYears() {
+    try {
+      const cars = await this.carRepository.getAllCars();
+      const years = [...new Set(cars.map(car => car.year))];
+      return years;
+    } catch (error) {
+      throw new Error('Error fetching years: ' + error.message);
+    }
+  }
 }
 
 module.exports = CarService;

@@ -18,7 +18,13 @@ app.delete('/cars/:id', CarsController.deleteCar);
 
 app.get('/cars/brand/:brand', CarsController.getCarsByBrand);
 app.get('/cars/model/:model', CarsController.getCarsByModel);
-app.get('/cars/year/:year', CarsController.getCarsByYear);
+app.get('/cars/year/:year', CarsController.getCarsByYear); 
+
+app.get('/brands', CarsController.getBrands);
+app.get('/models/:brand', CarsController.getModelsByBrand);
+app.get('/years/:model', CarsController.getYearsByModel);
+app.get('/brands/:year', CarsController.getBrandsByYear);
+app.get('/models/:brand/:year', CarsController.getModelsByBrandAndYear);
 
 app.use((err, req, res, next) => {
   console.error(err.stack);
